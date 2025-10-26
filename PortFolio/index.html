@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alex Doe | Computer Scientist</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- 🎨 CSS STYLES --- */
+
+        /* ------------------- */
+        /* #region === GLOBAL & VARIABLES === */
+        /* ------------------- */
+        :root {
+            --primary-color: #00aaff; /* A vibrant, techy blue */
+            --background-color: #121212;
+            --surface-color: #1e1e1e;
+            --text-color: #e0e0e0;
+            --subtle-text-color: #a0a0a0;
+            --font-main: 'Poppins', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        h1, h2, h3 {
+            font-weight: 600;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        h1 { font-size: 3.5rem; }
+        h2 { font-size: 2.5rem; margin-bottom: 2.5rem; text-align: center; }
+        h3 { font-size: 1.5rem; color: var(--primary-color); }
+        
+        p { color: var(--subtle-text-color); margin-bottom: 1rem; }
+        a { text-decoration: none; color: var(--primary-color); transition: color 0.3s ease; }
+        a:hover { color: #fff; }
+
+        section {
+            padding: 6rem 0;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--primary-color);
+            margin: 1rem auto 0;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            background: var(--primary-color);
+            color: #fff;
+            font-weight: 600;
+            border: 2px solid var(--primary-color);
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: var(--primary-color);
+        }
+
+        .btn:hover {
+            background: #0077b3;
+            border-color: #0077b3;
+            transform: translateY(-3px);
+            color: #fff;
+        }
+        /* #endregion */
+        
+
+        /* ------------------- */
+        /* #region === HEADER & NAVIGATION === */
+        /* ------------------- */
+        .main-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            padding: 1.5rem 0;
+            transition: all 0.4s ease;
+        }
+        
+        .main-header.scrolled {
+            background: rgba(30, 30, 30, 0.85);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo { font-size: 1.8rem; font-weight: 700; color: #fff; }
+        
+        .nav-links { list-style: none; display: flex; }
+        .nav-links li { margin-left: 2rem; }
+        .nav-links a { font-weight: 600; padding-bottom: 0.25rem; }
+        .nav-links a.active { color: #fff; border-bottom: 2px solid var(--primary-color); }
+
+        .hamburger { display: none; cursor: pointer; }
+        .hamburger .line { width: 28px; height: 3px; background: #fff; margin: 6px 0; transition: all 0.3s ease; }
+        /* #endregion */
+
+        /* ------------------- */
+        /* #region === HERO SECTION === */
+        /* ------------------- */
+        #home {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        
+        .hero-content h1 {
+            color: #fff;
+        }
+        
+        .hero-content h1 span {
+            color: var(--primary-color);
+        }
+        
+        .hero-content .subtitle {
+            font-size: 1.5rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+        }
+        
+        .hero-buttons .btn { margin: 0 0.5rem; }
+        
+        .social-links { margin-top: 2.5rem; }
+        .social-links a {
+            font-size: 1.8rem;
+            margin: 0 1rem;
+            color: var(--subtle-text-color);
+        }
+        .social-links a:hover { color: var(--primary-color); }
+        /* #endregion */
+        
+
+        /* ------------------- */
+        /* #region === ABOUT SECTION === */
+        /* ------------------- */
+        .about-content {
+            display: grid;
+            grid-template-columns: 2fr 3fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .profile-pic {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 10px;
+            border: 3px solid var(--primary-color);
+        }
+        
+        .skills-grid {
+            margin-top: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+        
+        .skill-pill {
+            background: var(--surface-color);
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            font-weight: 600;
+        }
+        /* #endregion */
+
+
+        /* ------------------- */
+        /* #region === PROJECTS SECTION === */
+        /* ------------------- */
+        #projects {
+            background-color: var(--surface-color);
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+        
+        .project-card {
+            background: var(--background-color);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        }
+        
+        .project-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .project-info {
+            padding: 1.5rem;
+        }
+        
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+        
+        .tech-tag {
+            background: var(--surface-color);
+            color: var(--primary-color);
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .project-links a {
+            font-weight: 600;
+            margin-right: 1.5rem;
+        }
+        /* #endregion */
+
+        /* ------------------- */
+        /* #region === CONTACT SECTION === */
+        /* ------------------- */
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .contact-content p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+        /* #endregion */
+
+        /* ------------------- */
+        /* #region === FOOTER === */
+        /* ------------------- */
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            background: var(--surface-color);
+            color: var(--subtle-text-color);
+        }
+        /* #endregion */
+
+        /* ------------------- */
+        /* #region === ANIMATIONS & RESPONSIVE === */
+        /* ------------------- */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.8rem; }
+            h2 { font-size: 2rem; }
+            section { padding: 4rem 0; }
+            
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 60%;
+                height: 100vh;
+                background: var(--surface-color);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transition: right 0.4s ease-in-out;
+            }
+            .nav-links.active { right: 0; }
+            .nav-links li { margin: 1.5rem 0; }
+            
+            .hamburger { display: block; position: relative; z-index: 101; }
+            .hamburger.active .line:nth-child(1) { transform: rotate(-45deg) translate(-7px, 7px); }
+            .hamburger.active .line:nth-child(2) { opacity: 0; }
+            .hamburger.active .line:nth-child(3) { transform: rotate(45deg) translate(-7px, -7px); }
+            
+            .about-content { grid-template-columns: 1fr; text-align: center; }
+            .profile-pic { margin: 0 auto 2rem; }
+        }
+        /* #endregion */
+    </style>
+</head>
+<body>
+
+    <header class="main-header" id="main-header">
+        <nav class="navbar container">
+            <a href="#home" class="logo">Alex Doe</a>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home">
+            <div class="hero-content container">
+                <h1 class="fade-in">Hi, I'm <span>Alex Doe</span></h1>
+                <p class="subtitle fade-in">A Computer Scientist & Software Developer based in Dar es Salaam.</p>
+                <div class="hero-buttons fade-in">
+                    <a href="#projects" class="btn">View My Work</a>
+                    <a href="#" class="btn btn-outline">Download CV</a>
+                </div>
+                <div class="social-links fade-in">
+                    <a href="#" aria-label="GitHub">💻</a>
+                    <a href="#" aria-label="LinkedIn">🔗</a>
+                    <a href="#" aria-label="Twitter">🐦</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="container">
+                <h2 class="section-title fade-in">About Me</h2>
+                <div class="about-content fade-in">
+                    <img src="_EHS1394.jpg" alt="Alex Doe" class="profile-pic">
+                    <div class="about-text">
+                        <h3>Innovating one line of code at a time.</h3>
+                        <p>
+                            I am a passionate computer scientist with a strong foundation in software engineering and algorithm design. My journey began at the University of Dar es Salaam, where I discovered my love for solving complex problems and building efficient, scalable software solutions.
+                        </p>
+                        <p>
+                            I thrive in collaborative environments and am always eager to learn new technologies. Currently, I'm focused on cloud computing and machine learning, seeking to apply my skills to create impactful applications.
+                        </p>
+                        <div class="skills-grid">
+                            <span class="skill-pill">Python</span>
+                            <span class="skill-pill">JavaScript</span>
+                            <span class="skill-pill">Java</span>
+                            <span class="skill-pill">React</span>
+                            <span class="skill-pill">Node.js</span>
+                            <span class="skill-pill">SQL</span>
+                            <span class="skill-pill">Docker</span>
+                            <span class="skill-pill">AWS</span>
+                            <span class="skill-pill">Git</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <div class="container">
+                <h2 class="section-title fade-in">My Projects</h2>
+                <div class="projects-grid">
+                    
+                    <div class="project-card fade-in">
+                        <img src="https://images.unsplash.com/photo-1587620962725-abab7fe55159?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1950&q=80" alt="Project One" class="project-image">
+                        <div class="project-info">
+                            <h3>E-Commerce Platform</h3>
+                            <p>A full-stack e-commerce site with features like product search, user authentication, and a payment gateway.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">React</span>
+                                <span class="tech-tag">Node.js</span>
+                                <span class="tech-tag">MongoDB</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" target="_blank">Live Demo</a>
+                                <a href="#" target="_blank">Source Code</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card fade-in">
+                        <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Project Two" class="project-image">
+                        <div class="project-info">
+                            <h3>Data Visualization Dashboard</h3>
+                            <p>An interactive dashboard that visualizes real-time sensor data using D3.js for a local weather station.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">JavaScript</span>
+                                <span class="tech-tag">D3.js</span>
+                                <span class="tech-tag">Python</span>
+                                <span class="tech-tag">Flask</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" target="_blank">Live Demo</a>
+                                <a href="#" target="_blank">Source Code</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card fade-in">
+                        <img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Project Three" class="project-image">
+                        <div class="project-info">
+                            <h3>Mobile Chat Application</h3>
+                            <p>A real-time chat application for Android built with Java, featuring private and group messaging.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Java</span>
+                                <span class="tech-tag">Android Studio</span>
+                                <span class="tech-tag">Firebase</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" target="_blank">Source Code</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="container">
+                <div class="contact-content fade-in">
+                    <h2 class="section-title">Get In Touch</h2>
+                    <p>
+                        I'm currently open to new opportunities and collaborations. Whether you have a question or just want to say hi, feel free to reach out. I'll get back to you as soon as possible!
+                    </p>
+                    <a href="mailto:youremail@example.com" class="btn">Say Hello</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Alex Doe. Built with passion in Tanzania.</p>
+    </footer>
+
+
+    <script>
+        // --- 🚀 JAVASCRIPT LOGIC ---
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const header = document.getElementById('main-header');
+            const hamburger = document.getElementById('hamburger');
+            const navLinks = document.getElementById('nav-links');
+            const navLinkItems = document.querySelectorAll('#nav-links a');
+            const sections = document.querySelectorAll('main section');
+
+            // --- Sticky Header on Scroll ---
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            // --- Hamburger Menu Toggle ---
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                hamburger.classList.toggle('active');
+            });
+            
+            // --- Close mobile menu on link click ---
+            navLinkItems.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                        hamburger.classList.remove('active');
+                    }
+                });
+            });
+
+            // --- Active Nav Link on Scroll ---
+            const observerOptions = { root: null, rootMargin: '0px', threshold: 0.6 };
+            const sectionObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        navLinkItems.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href').substring(1) === entry.target.id) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                sectionObserver.observe(section);
+            });
+            
+            // --- Fade-in Animations on Scroll ---
+            const fadeObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            document.querySelectorAll('.fade-in').forEach(el => {
+                fadeObserver.observe(el);
+            });
+        });
+    </script>
+
+</body>
+</html>
